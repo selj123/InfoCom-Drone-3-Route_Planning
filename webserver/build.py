@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
 from flask_cors import CORS
 import time
@@ -9,7 +9,7 @@ CORS(app, supports_credentials=True)
 app.secret_key = 'dljsaklqk24e21cjn!Ew@@dsa5'
 socket = SocketIO(app, cors_allowed_origins="*")
 
-# change this so rhat you can connect to your redis server
+# change this so rhat you can connect to your own redis server
 # ===============================================
 redis_server = redis.Redis("YOUR_SERVER")
 # ===============================================
@@ -40,11 +40,8 @@ def map():
 @socket.on('get_location')
 def get_location():
     while True:
-        #get your longitude and latitude from the Redis server
-        # ====================================================
-        longitude = None
-        latitude = None
-        # ====================================================
+        longitude = float(redis_server.get('longitude'))
+        latitude = float(redis_server.get('latitude'))
         x_svg, y_svg = translate((longitude, latitude))
         emit('get_location', (x_svg, y_svg))
         time.sleep(0.01)
