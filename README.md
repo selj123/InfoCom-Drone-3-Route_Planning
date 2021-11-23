@@ -31,5 +31,5 @@ Go to `/webserver`, run flask servers:
     flask run
     ```
 
-Note: Don't user `python3 build.py` to run the webserver, since this does not porvide all the functionalities requied by the application.
+Note: Don't use `python3 build.py` to run the webserver, since this does not porvide all the functionalities requied by the application.
 
