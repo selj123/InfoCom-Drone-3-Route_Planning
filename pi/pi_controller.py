@@ -2,9 +2,6 @@ import math
 import requests
 import argparse
 
-from webserver.database import drone
-
-
 #Write you own function that moves the dron from one place to another 
 #the function returns the drone's current location while moving
 #====================================================================================================
