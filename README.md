@@ -43,5 +43,5 @@ http://localhost:5000
 ```
 
 
-Note: Don't use `python3 build.py`, `python3 route_planner.py`, or `python3 database.py` to run the webservers, since this does not porvide all the functionality requied by the application.
+Note: Don't use `python3 build.py`, `python3 route_planner.py`, or `python3 database.py` to run the webservers, since this does not provide all the functionality requied by the application.
 
