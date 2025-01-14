@@ -2,7 +2,7 @@ import math
 import requests
 import argparse
 
-#Write you own function that moves the dron from one place to another 
+#Write you own function that moves the drone from one place to another 
 #the function returns the drone's current location while moving
 #====================================================================================================
 def your_function():
