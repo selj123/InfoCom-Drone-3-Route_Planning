@@ -9,26 +9,6 @@ def your_function():
     longitude = 13.21008
     latitude = 55.71106
     return (longitude, latitude)
-
-def move(current_location, target_location):
-    current_location_x, current_location_y = current_location
-    target_location_x, target_location_y = target_location
-
-    if current_location_x < target_location_x:
-        current_location_x += 0.00001
-    elif current_location_x > target_location_x:
-        current_location_x += 0.00001
-    if math.isclose(current_location_x, target_location_x, abs_tol=10**-3):
-        current_location_x = target_location_x
-
-    if current_location_y < target_location_y:
-        current_location_y += 0.00001
-    elif current_location_y > target_location_y:
-        current_location_y += 0.00001
-    if math.isclose(current_location_y, target_location_y, abs_tol=10**-3):
-        current_location_y = target_location_y
-
-    return (current_location_x, current_location_y)
 #====================================================================================================
 
 
@@ -38,24 +18,13 @@ def run(current_coords, from_coords, to_coords, SERVER_URL):
     # 2. Plan a path with your own function, so that the drone moves from [current_address] to [from_address], and the from [from_address] to [to_address]. 
     # 3. While moving, the drone keeps sending it's location to the database.
     #====================================================================================================
-    drone_coords = current_coords
-    while drone_coords != from_coords:
-        drone_coords = move(drone_coords, from_coords)
+    while True:
+        drone_coords = your_function()
         with requests.Session() as session:
             drone_location = {'longitude': drone_coords[0],
                               'latitude': drone_coords[1]
                         }
             resp = session.post(SERVER_URL, json=drone_location)
-    drone_coords = from_coords
-    while drone_coords != to_coords:
-        drone_coords = move(drone_coords, to_coords)
-        with requests.Session() as session:
-            drone_location = {'longitude': drone_coords[0],
-                              'latitude': drone_coords[1]
-                        }
-            resp = session.post(SERVER_URL, json=drone_location)
-
-        
   #====================================================================================================
 
    
